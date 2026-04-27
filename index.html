@@ -1257,40 +1257,7 @@
     </div>
 </section>
 
-<!-- METRICS -->
-<section id="metrics">
-    <div class="container">
-        <div class="row"><div class="col-lg-10 mx-auto">
-            <div class="section-label">Section 09</div>
-            <h2>Evaluation Metrics</h2>
-            <div class="section-divider"></div>
-            <div class="card-box">
-                <p>Due to class imbalance in the dataset, model performance is evaluated using both overall accuracy and class-level metrics. The model achieved an accuracy of <strong>88.8%</strong> on over <strong>34.5K reviews</strong>, indicating strong performance.</p>
-
-                <p>The model performs best on <strong>High (4–5 stars)</strong> reviews, followed by <strong>Low (1–2 stars)</strong>, while <strong>Mid (3 stars)</strong> reviews are more difficult to classify. A <strong>confusion matrix</strong> is used to analyze prediction errors, which mostly occur between similar rating categories. The dashboard also highlights rating distribution and identifies <strong>low-rated apps</strong>, helping stakeholders understand user feedback and areas for improvement.</p>
-
-            <div style="margin-top:24px;">
-                <a href="https://app.powerbi.com/groups/me/reports/b1390924-d514-42c3-8a20-f045f1732dbc/619b1cad838019b88d45" 
-                target="_blank"
-                style="display:inline-flex;align-items:center;gap:10px;
-                        background:var(--navy);color:#fff;
-                        padding:12px 24px;border-radius:10px;
-                        font-weight:600;font-size:0.95rem;
-                        text-decoration:none;
-                        border:2px solid var(--accent);
-                        transition:background 0.2s;">
-                    📊 View Live Power BI Dashboard
-                </a>
-            <p style="font-size:0.78rem;color:var(--muted);margin-top:10px;">
-            Opens in Power BI — live data from Azure ML pipeline · Last updated 4/25/2026
-        </p>
-        </div>
-            </div>
-        </div></div>
-    </div>
-</section>
-
- <!-- UPLOAD -->
+<!-- UPLOAD -->
 <section id="upload" class="bg-alt">
     <div class="container">
         <div class="row"><div class="col-lg-10 mx-auto">
@@ -1355,12 +1322,47 @@
                 <!-- Requirements note -->
                 <p style="font-size: 0.78rem; color: var(--muted); margin-top: 20px; margin-bottom: 0;">
                     ⚠️ Required columns: <code>appID</code>, <code>reviewText</code>, <code>reviewerRating</code> (1–5). 
-                    Pipeline takes approximately 5–10 minutes to complete.
+                    Pipeline takes approximately 10–20 minutes to complete.
                 </p>
             </div>
         </div></div>
     </div>
 </section>
+
+
+<!-- METRICS -->
+<section id="metrics">
+    <div class="container">
+        <div class="row"><div class="col-lg-10 mx-auto">
+            <div class="section-label">Section 09</div>
+            <h2>Evaluation Metrics</h2>
+            <div class="section-divider"></div>
+            <div class="card-box">
+                <p>Due to class imbalance in the dataset, model performance is evaluated using both overall accuracy and class-level metrics. The model achieved an accuracy of <strong>88.8%</strong> on over <strong>34.5K reviews</strong>, indicating strong performance.</p>
+
+                <p>The model performs best on <strong>High (4–5 stars)</strong> reviews, followed by <strong>Low (1–2 stars)</strong>, while <strong>Mid (3 stars)</strong> reviews are more difficult to classify. A <strong>confusion matrix</strong> is used to analyze prediction errors, which mostly occur between similar rating categories. The dashboard also highlights rating distribution and identifies <strong>low-rated apps</strong>, helping stakeholders understand user feedback and areas for improvement.</p>
+
+            <div style="margin-top:24px;">
+                <a href="https://app.powerbi.com/groups/me/reports/b1390924-d514-42c3-8a20-f045f1732dbc/619b1cad838019b88d45" 
+                target="_blank"
+                style="display:inline-flex;align-items:center;gap:10px;
+                        background:var(--navy);color:#fff;
+                        padding:12px 24px;border-radius:10px;
+                        font-weight:600;font-size:0.95rem;
+                        text-decoration:none;
+                        border:2px solid var(--accent);
+                        transition:background 0.2s;">
+                    📊 View Live Power BI Dashboard
+                </a>
+            <p style="font-size:0.78rem;color:var(--muted);margin-top:10px;">
+            Opens in Power BI — live data from Azure ML pipeline · Last updated 4/25/2026
+        </p>
+        </div>
+            </div>
+        </div></div>
+    </div>
+</section>
+
 
 <!-- FOOTER -->
 <footer>
