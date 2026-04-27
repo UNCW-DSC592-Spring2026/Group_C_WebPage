@@ -1290,6 +1290,78 @@
     </div>
 </section>
 
+ <!-- UPLOAD -->
+<section id="upload" class="bg-alt">
+    <div class="container">
+        <div class="row"><div class="col-lg-10 mx-auto">
+            <div class="section-label">Section 10</div>
+            <h2>Run the Pipeline</h2>
+            <div class="section-divider"></div>
+            <div class="card-box">
+                <p>Upload a CSV file containing app reviews to run the prediction pipeline. Your file must include the columns <strong>appID</strong>, <strong>reviewText</strong>, and <strong>reviewerRating</strong>. Results will be available in the Power BI dashboard once the pipeline completes.</p>
+
+                <!-- Upload Area -->
+                <div id="upload-area"
+                     style="border: 2px dashed var(--border); border-radius: var(--radius);
+                            padding: 48px 32px; text-align: center; background: var(--light);
+                            cursor: pointer; transition: border-color 0.2s, background 0.2s;
+                            margin: 24px 0 20px;"
+                     ondragover="handleDragOver(event)"
+                     ondragleave="handleDragLeave(event)"
+                     ondrop="handleDrop(event)"
+                     onclick="document.getElementById('csv-input').click()">
+                    <div style="font-size: 2.2rem; margin-bottom: 12px;">📂</div>
+                    <p style="font-weight: 600; font-size: 1rem; margin-bottom: 4px; color: var(--navy);">
+                        Drag &amp; drop your CSV here
+                    </p>
+                    <p style="font-size: 0.84rem; color: var(--muted); margin: 0;">
+                        or <span style="color: var(--blue); font-weight: 600;">click to browse</span> — .csv files only
+                    </p>
+                    <input type="file" id="csv-input" accept=".csv"
+                           style="display: none;" onchange="handleFileSelect(event)">
+                </div>
+
+                <!-- Selected File Info -->
+                <div id="file-info" style="display: none; margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; gap: 12px;
+                                background: var(--indigo-bg); border: 1px solid #c7d5f5;
+                                border-radius: 10px; padding: 14px 18px;">
+                        <span style="font-size: 1.3rem;">📄</span>
+                        <div style="flex: 1;">
+                            <div id="file-name" style="font-weight: 600; font-size: 0.9rem; color: var(--navy);"></div>
+                            <div id="file-size" style="font-size: 0.78rem; color: var(--muted);"></div>
+                        </div>
+                        <button onclick="clearFile()"
+                                style="background: none; border: none; color: var(--muted);
+                                       font-size: 1.1rem; cursor: pointer; padding: 4px;">✕</button>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button id="submit-btn" onclick="submitFile()"
+                        style="display: inline-flex; align-items: center; gap: 10px;
+                               background: var(--navy); color: #fff;
+                               padding: 12px 28px; border-radius: 10px;
+                               font-weight: 600; font-size: 0.95rem;
+                               border: 2px solid var(--accent);
+                               cursor: pointer; transition: background 0.2s; opacity: 0.5;"
+                        disabled>
+                    🚀 Run Pipeline
+                </button>
+
+                <!-- Status Messages -->
+                <div id="status-msg" style="display: none; margin-top: 20px;"></div>
+
+                <!-- Requirements note -->
+                <p style="font-size: 0.78rem; color: var(--muted); margin-top: 20px; margin-bottom: 0;">
+                    ⚠️ Required columns: <code>appID</code>, <code>reviewText</code>, <code>reviewerRating</code> (1–5). 
+                    Pipeline takes approximately 5–10 minutes to complete.
+                </p>
+            </div>
+        </div></div>
+    </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
     <div class="container">
@@ -1344,6 +1416,101 @@
             : '📄 View Full Risk Register with Mitigation Strategies (PDF)';
         btn.innerHTML = (isOpen ? '📄 Hide PDF ' : label) + ' <span class="pdf-arrow" style="' + (isOpen ? 'transform:rotate(180deg);' : '') + 'transition:transform 0.25s;font-size:0.75rem;">▾</span>';
     }
+    // --- CSV Upload ---
+let selectedFile = null;
+
+function handleDragOver(e) {
+    e.preventDefault();
+    var area = document.getElementById('upload-area');
+    area.style.borderColor = 'var(--blue)';
+    area.style.background  = '#edf1f8';
+}
+
+function handleDragLeave(e) {
+    var area = document.getElementById('upload-area');
+    area.style.borderColor = 'var(--border)';
+    area.style.background  = 'var(--light)';
+}
+
+function handleDrop(e) {
+    e.preventDefault();
+    handleDragLeave(e);
+    var file = e.dataTransfer.files[0];
+    if (file && file.name.endsWith('.csv')) setFile(file);
+    else showStatus('error', '⚠️ Please upload a .csv file only.');
+}
+
+function handleFileSelect(e) {
+    var file = e.target.files[0];
+    if (file) setFile(file);
+}
+
+function setFile(file) {
+    selectedFile = file;
+    document.getElementById('file-name').textContent = file.name;
+    document.getElementById('file-size').textContent = (file.size / 1024).toFixed(1) + ' KB';
+    document.getElementById('file-info').style.display = 'block';
+    var btn = document.getElementById('submit-btn');
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    document.getElementById('status-msg').style.display = 'none';
+}
+
+function clearFile() {
+    selectedFile = null;
+    document.getElementById('file-info').style.display = 'none';
+    document.getElementById('csv-input').value = '';
+    var btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.style.opacity = '0.5';
+}
+
+function showStatus(type, message) {
+    var el = document.getElementById('status-msg');
+    var styles = {
+        success: 'background:#dcfce7; border:1px solid #86efac; color:#166534;',
+        error:   'background:#fef2f2; border:1px solid #fecaca; color:#991b1b;',
+        loading: 'background:var(--indigo-bg); border:1px solid #c7d5f5; color:var(--indigo);'
+    };
+    el.style.cssText = 'display:block; padding:14px 18px; border-radius:10px; font-size:0.88rem; font-weight:500;' + styles[type];
+    el.textContent = message;
+}
+
+function submitFile() {
+    if (!selectedFile) return;
+
+    var btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.style.opacity = '0.5';
+    btn.textContent   = '⏳ Submitting...';
+
+    showStatus('loading', '⏳ Uploading file and triggering pipeline — this may take a moment...');
+
+    var formData = new FormData();
+    formData.append('file', selectedFile);
+
+    // Replace with your Azure Function URL once permissions are granted
+    var FUNCTION_URL = 'YOUR_AZURE_FUNCTION_URL';
+
+    fetch(FUNCTION_URL, { method: 'POST', body: formData })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+            if (data.error) {
+                showStatus('error', '❌ Error: ' + data.error);
+            } else {
+                showStatus('success', '✅ Pipeline triggered successfully! Check the Power BI dashboard in 5–10 minutes for updated results. Job ID: ' + data.job_id);
+            }
+            btn.disabled     = false;
+            btn.style.opacity = '1';
+            btn.textContent  = '🚀 Run Pipeline';
+        })
+        .catch(function(err) {
+            showStatus('error', '❌ Could not connect to pipeline. Please try again or contact the team.');
+            btn.disabled     = false;
+            btn.style.opacity = '1';
+            btn.textContent  = '🚀 Run Pipeline';
+        });
+}
 </script>
 </body>
 </html>
