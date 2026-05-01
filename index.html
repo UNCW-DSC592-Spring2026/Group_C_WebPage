@@ -52,12 +52,10 @@
             color: #fff !important;
             display: flex; align-items: center; gap: 10px;
         }
-        .navbar-brand img { border-radius: 4px; 
-            height: 70px; 
-            margin: -14px 0;
+        .navbar-brand img {
             border-radius: 4px;
-            margin-left: -100px;
-            margin-right: 100px;
+            height: 36px;
+            margin-right: 10px;
         }
         .nav-link {
             color: rgba(255,255,255,0.78) !important;
@@ -152,6 +150,53 @@
         }
         .hero-chip:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.28); }
 
+        /* HERO STATS */
+        .hero-stats {
+            display: flex; align-items: center; justify-content: center;
+            gap: 0; margin: 32px auto 28px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px; padding: 20px 36px;
+            backdrop-filter: blur(6px);
+            max-width: 620px; flex-wrap: wrap;
+        }
+        .hero-stat { text-align: center; padding: 0 28px; }
+        .hero-stat-val {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem; color: #fff; line-height: 1;
+            margin-bottom: 4px;
+        }
+        .hero-stat-label { font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.07em; }
+        .hero-stat-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.2); flex-shrink: 0; }
+        @media (max-width: 576px) {
+            .hero-stats { padding: 16px 20px; gap: 4px; }
+            .hero-stat { padding: 8px 14px; }
+            .hero-stat-val { font-size: 1.5rem; }
+            .hero-stat-divider { display: none; }
+        }
+        /* HERO CTA BUTTONS */
+        .hero-ctas { display: flex; gap: 14px; justify-content: center; margin-bottom: 28px; flex-wrap: wrap; }
+        .hero-cta-primary {
+            background: var(--accent); color: var(--navy);
+            font-weight: 700; font-size: 0.9rem;
+            padding: 12px 28px; border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s;
+            display: inline-flex; align-items: center; gap: 6px;
+        }
+        .hero-cta-primary:hover { background: #f0c050; color: var(--navy); text-decoration: none; transform: translateY(-2px); }
+        .hero-cta-secondary {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff; font-weight: 600; font-size: 0.9rem;
+            padding: 12px 28px; border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s;
+            display: inline-flex; align-items: center; gap: 6px;
+            backdrop-filter: blur(4px);
+        }
+        .hero-cta-secondary:hover { background: rgba(255,255,255,0.18); color: #fff; text-decoration: none; transform: translateY(-2px); }
+
         /* PHASE BANNER */
         .phase-banner { background: var(--white); border-bottom: 1px solid var(--border); padding: 22px 0; }
         .phase-track { display: flex; align-items: flex-start; max-width: 620px; margin: 0 auto; }
@@ -211,7 +256,7 @@
         .criteria-desc strong { display: block; margin-bottom: 2px; }
 
         /* PERSONA CARDS */
-        .persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 8px; }
+        .persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 8px; align-items: start; }
         @media (max-width: 900px) { .persona-grid { grid-template-columns: 1fr; } }
         .persona-card {
             background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
@@ -226,20 +271,20 @@
         /* Clickable summary row */
         .persona-summary {
             display: flex; align-items: center; gap: 14px;
-            padding: 18px 20px; cursor: pointer;
-            user-select: none;
+            padding: 20px; cursor: pointer;
+            user-select: none; min-height: 0;
         }
         .persona-avatar {
-            width: 46px; height: 46px; border-radius: 50%;
+            width: 80px; height: 80px; border-radius: 50%;
             background: linear-gradient(135deg, var(--blue), var(--navy));
-            color: #fff; font-size: 1.2rem;
+            color: #fff; font-size: 1.8rem;
             display: flex; align-items: center; justify-content: center; flex-shrink: 0;
         }
         .persona-card:nth-child(2) .persona-avatar { background: linear-gradient(135deg, #0e7490, #164e63); }
         .persona-card:nth-child(3) .persona-avatar { background: linear-gradient(135deg, #7c3aed, #4c1d95); }
         .persona-summary-info { flex: 1; min-width: 0; }
-        .persona-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 1px; }
-        .persona-role { font-size: 0.76rem; color: var(--muted); font-weight: 500; }
+        .persona-name { font-weight: 700; font-size: 0.88rem; margin-bottom: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .persona-role { font-size: 0.76rem; color: var(--muted); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .persona-freq { font-size: 0.7rem; background: var(--indigo-bg); color: var(--indigo); padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 3px; }
         .persona-chevron { font-size: 0.7rem; color: var(--muted); transition: transform 0.25s; flex-shrink: 0; }
         .persona-card.open .persona-chevron { transform: rotate(180deg); }
@@ -302,7 +347,8 @@
         .badge-upcoming { background: var(--indigo-bg); color: var(--indigo); font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
 
         /* ARCHITECTURE DIAGRAMS */
-        .diagram-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+        .diagram-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 24px 0; }
+        @media (max-width: 900px) { .diagram-cards { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 640px) { .diagram-cards { grid-template-columns: 1fr; } }
         .diagram-card {
             border-radius: 14px; overflow: hidden;
@@ -330,7 +376,7 @@
             font-size: 1.2rem; flex-shrink: 0;
         }
         .diagram-card-title { font-weight: 700; font-size: 1rem; color: #fff; }
-        .diagram-card-subtitle { font-size: 0.73rem; color: rgba(255,255,255,0.6); margin-top: 2px; }
+        .diagram-card-subtitle { font-size: 0.63rem; color: rgba(255,255,255,0.6); margin-top: 2px; }
         .diagram-card-body { padding: 18px 20px; background: var(--white); }
         .diagram-card-body p { font-size: 0.86rem; color: var(--muted); margin: 0 0 14px; line-height: 1.6; }
         /* Flow diagram inside card */
@@ -426,7 +472,7 @@
         footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 36px 0; font-size: 0.85rem; }
         .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
         footer strong { color: rgba(255,255,255,0.9); }
-        footer img { opacity: 0.8; height: 140px; margin: -45px 0;}
+        footer img { opacity: 0.8; height: 52px; }
         .footer-links {
             display: flex;
             gap: 16px;
@@ -441,14 +487,187 @@
             transform: translateY(-2px);
         }
 
+        /* READING PROGRESS BAR */
+        #progress-bar {
+            position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+            background: linear-gradient(90deg, var(--accent), #f0c050);
+            z-index: 9999; transition: width 0.1s linear;
+            box-shadow: 0 0 8px rgba(232,160,32,0.6);
+        }
+
+        /* BACK TO TOP */
+        #back-to-top {
+            position: fixed; bottom: 28px; right: 28px;
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--navy); color: #fff;
+            border: 2px solid var(--accent);
+            font-size: 1.1rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transform: translateY(16px);
+            transition: opacity 0.3s, transform 0.3s, background 0.2s;
+            z-index: 999; box-shadow: 0 4px 16px rgba(10,31,68,0.25);
+        }
+        #back-to-top.visible { opacity: 1; transform: translateY(0); }
+        #back-to-top:hover { background: var(--accent); color: var(--navy); }
+
+        /* SCROLL FADE-IN ANIMATION */
+        .fade-in-up {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* CLASS PERFORMANCE BARS */
+        .perf-bars { margin-top: 24px; display: flex; flex-direction: column; gap: 14px; }
+        .perf-bar-item { display: flex; align-items: center; gap: 14px; }
+        .perf-bar-label { font-size: 0.85rem; font-weight: 700; min-width: 110px; color: var(--text); }
+        .perf-bar-track {
+            flex: 1; height: 14px; background: var(--border);
+            border-radius: 8px; overflow: hidden;
+        }
+        .perf-bar-fill {
+            height: 100%; border-radius: 8px; width: 0%;
+            transition: width 1.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .perf-bar-fill.high   { background: linear-gradient(90deg, #16a34a, #22c55e); }
+        .perf-bar-fill.low    { background: linear-gradient(90deg, #2563eb, #60a5fa); }
+        .perf-bar-fill.mid    { background: linear-gradient(90deg, #d97706, #fbbf24); }
+        .perf-bar-pct { font-size: 0.85rem; font-weight: 700; min-width: 44px; text-align: right; color: var(--muted); }
+
+        .counter-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 16px; margin: 28px 0;
+        }
+        @media (max-width: 768px) {
+            .counter-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .counter-box {
+            background: linear-gradient(135deg, #f0f5ff, #e8effe);
+            border: 1px solid #c7d5f5; border-radius: 12px;
+            padding: 22px 12px; text-align: center;
+            overflow: hidden; min-width: 0;
+        }
+        .counter-val {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(1.3rem, 2.5vw, 2rem); color: var(--navy); line-height: 1.2;
+            margin-bottom: 6px; word-break: break-word;
+        }
+        .counter-label { font-size: 0.72rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.4; }
+
+        /* TEAM SECTION */
+        .team-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 20px; margin-top: 28px;
+        }
+        @media (max-width: 768px) {
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .team-grid { grid-template-columns: 1fr 1fr; }
+        }
+        .team-card {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 28px 20px; text-align: center;
+            box-shadow: 0 2px 10px rgba(10,31,68,0.06);
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .team-card:hover { box-shadow: 0 6px 24px rgba(10,31,68,0.13); transform: translateY(-3px); }
+        .team-avatar {
+            width: 160px; height: 160px; border-radius: 50%;
+            margin: 0 auto 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; font-weight: 700; color: #fff;
+            box-shadow: 0 4px 16px rgba(10,31,68,0.18);
+            border: 3px solid var(--border);
+        }
+        .team-avatar.c1 { background: linear-gradient(135deg, var(--blue), var(--navy)); }
+        .team-avatar.c2 { background: linear-gradient(135deg, #0e7490, #164e63); }
+        .team-avatar.c3 { background: linear-gradient(135deg, #7c3aed, #4c1d95); }
+        .team-avatar.c4 { background: linear-gradient(135deg, #059669, #065f46); }
+        .team-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 3px; }
+        .team-role { font-size: 0.78rem; color: var(--muted); font-weight: 500; }
+        .team-contrib {
+            margin-top: 10px; font-size: 0.76rem; color: var(--blue);
+            background: var(--indigo-bg); padding: 3px 10px;
+            border-radius: 10px; display: inline-block; font-weight: 600;
+        }
+
+        /* EXPERIMENT PHASE CARDS */
+        .exp-phases { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:4px; }
+        @media (max-width:640px) { .exp-phases { grid-template-columns:1fr; } }
+        .exp-phase-card { border-radius:12px; overflow:hidden; border:1px solid var(--border); box-shadow:0 2px 8px rgba(10,31,68,0.07); }
+        .exp-phase-best { box-shadow:0 4px 16px rgba(22,163,74,0.18); border-color:#86efac; }
+        .exp-phase-header { padding:14px 18px; }
+        .exp-phase-num { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.65); margin-bottom:3px; }
+        .exp-phase-title { font-size:0.97rem; font-weight:700; color:#fff; }
+        .exp-phase-body { padding:16px 18px; background:var(--white); }
+        .exp-phase-body p { font-size:0.84rem; color:var(--muted); margin:8px 0 12px; line-height:1.55; }
+        .exp-phase-acc { font-family:'DM Serif Display',serif; font-size:1.6rem; line-height:1; margin-bottom:2px; }
+        .best-acc { color:#16a34a; }
+        .ok-acc   { color:#1d4ed8; }
+        .bad-acc  { color:#dc2626; }
+        .fail-acc { color:var(--muted); }
+        .exp-phase-tag { font-size:0.72rem; font-weight:700; padding:3px 10px; border-radius:10px; display:inline-block; }
+        .best-tag { background:#dcfce7; color:#166534; }
+        .ok-tag   { background:#dbeafe; color:#1e40af; }
+        .bad-tag  { background:#fee2e2; color:#991b1b; }
+        .fail-tag { background:var(--light); color:var(--muted); }
+
+        /* LIMITATIONS BOX */
+        .limitations-box { background:#fffbeb; border:1px solid #fde68a; border-radius:12px; overflow:hidden; }
+        .lim-header { background:#f59e0b; color:#fff; font-weight:700; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.07em; padding:10px 18px; }
+        .lim-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+        .lim-item { display:flex; gap:12px; padding:14px 18px; border-bottom:1px solid #fde68a; font-size:0.83rem; line-height:1.5; color:var(--text); }
+        .lim-item:nth-child(odd) { border-right:1px solid #fde68a; }
+        .lim-item:nth-last-child(-n+2) { border-bottom:none; }
+        .lim-icon { font-size:1.3rem; flex-shrink:0; }
+        @media (max-width:640px) {
+            .lim-grid { grid-template-columns:1fr; }
+            .lim-item:nth-child(odd) { border-right:none; }
+            .lim-item:nth-last-child(-n+2) { border-bottom:1px solid #fde68a; }
+            .lim-item:last-child { border-bottom:none; }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .diagram-cards { grid-template-columns: 1fr 1fr !important; }
+            .navbar-brand { font-size: 0.9rem; }
+        }
+        @media (max-width: 768px) {
+            header { padding: 100px 0 70px; }
+            section { padding: 52px 0; }
+            .diagram-cards { grid-template-columns: 1fr !important; }
+            .phase-table { font-size: 0.8rem; }
+            .phase-table td, .phase-table th { padding: 8px 10px; }
+            .risk-summary-row { grid-template-columns: 1fr 1fr; }
+            .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+        }
         @media (max-width: 576px) {
-            .card-box { padding: 24px 20px; }
+            header { padding: 80px 0 60px; }
+            header h1 { font-size: 2rem; }
+            .hero-badge { font-size: 0.65rem; padding: 5px 12px; }
+            section { padding: 40px 0; }
+            .card-box { padding: 20px 16px; }
             .persona-cols { grid-template-columns: 1fr; }
+            .risk-summary-row { grid-template-columns: 1fr; }
+            .stat-row { grid-template-columns: 1fr 1fr; }
+            .criteria-grid { grid-template-columns: 1fr; }
+            .highlight-grid { grid-template-columns: 1fr 1fr; }
+            .phase-table { display: block; overflow-x: auto; white-space: nowrap; }
+            .flow-node { white-space: normal; font-size: 0.7rem; }
+            section h2 { font-size: 1.6rem; }
+            .footer-inner { text-align: left; }
         }
     </style>
 </head>
 
 <body id="page-top">
+
+<!-- READING PROGRESS BAR -->
+<div id="progress-bar"></div>
+
+<!-- BACK TO TOP -->
+<button id="back-to-top" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
 
 <!-- NAV -->
 <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
@@ -497,6 +716,7 @@
                     <a class="dropdown-item js-scroll-trigger" href="#metrics">Metrics</a>
                 </div>
             </li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">Team</a></li>
             </ul>
         </div>
     </div>
@@ -533,12 +753,12 @@
                 <div class="phase-dot">✓</div>
                 <div class="phase-label">Phase 2<br>Elaboration</div>
             </div>
-            <div class="phase-step active">
-                <div class="phase-dot">3</div>
+            <div class="phase-step done">
+                <div class="phase-dot">✓</div>
                 <div class="phase-label">Phase 3<br>Construction</div>
             </div>
-            <div class="phase-step">
-                <div class="phase-dot">4</div>
+            <div class="phase-step done">
+                <div class="phase-dot">✓</div>
                 <div class="phase-label">Phase 4<br>Transition</div>
             </div>
         </div>
@@ -552,7 +772,7 @@
             <div class="section-label">Section 01</div>
             <h2>Project Overview</h2>
             <div class="section-divider"></div>
-            <div class="card-box">
+            <div class="card-box fade-in-up">
                 <p class="lead" style="font-size:1.05rem;">
                     The <strong>App Review Rating Prediction System</strong> is a machine learning solution built to analyze large volumes of free-text app reviews and predict rating outcomes in a structured, interpretable format — replacing a weak baseline model with a well-engineered, fully documented pipeline.
                 </p>
@@ -624,7 +844,9 @@
 
                     <div class="persona-card" id="persona-0">
                         <div class="persona-summary" onclick="togglePersona(0)">
-                            <div class="persona-avatar">👨‍💻</div>
+                            <div class="persona-avatar" style="background:none; overflow:hidden; width:80px; height:80px;">
+                                <img src="content/Kenji.jpg" alt="Kenji Alvarez" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                            </div>
                             <div class="persona-summary-info">
                                 <div class="persona-name">Kenji Alvarez</div>
                                 <div class="persona-role">App Developer &amp; Studio Owner</div>
@@ -659,7 +881,9 @@
 
                     <div class="persona-card" id="persona-1">
                         <div class="persona-summary" onclick="togglePersona(1)">
-                            <div class="persona-avatar">👩‍💻</div>
+                            <div class="persona-avatar" style="background:none; overflow:hidden; width:80px; height:80px;">
+                                <img src="content/Kelly.png" alt="Kelly Winters" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                            </div>
                             <div class="persona-summary-info">
                                 <div class="persona-name">Kelly Winters</div>
                                 <div class="persona-role">App Developer</div>
@@ -693,7 +917,9 @@
 
                     <div class="persona-card" id="persona-2">
                         <div class="persona-summary" onclick="togglePersona(2)">
-                            <div class="persona-avatar">📊</div>
+                            <div class="persona-avatar" style="background:none; overflow:hidden; width:80px; height:80px;">
+                                <img src="content/Jonathan.png" alt="Jonathan Smith" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                            </div>
                             <div class="persona-summary-info">
                                 <div class="persona-name">Jonathan Smith</div>
                                 <div class="persona-role">Senior Marketing Strategist</div>
@@ -754,6 +980,7 @@
                             <div class="req-item"><div class="req-icon">F6</div><div class="req-text">Rank and group apps by predicted rating for charting and table display</div></div>
                             <div class="req-item"><div class="req-icon">F7</div><div class="req-text">Surface top 10 best/worst apps, most common complaints, and most cited strengths for top-rated apps</div></div>
                             <div class="req-item"><div class="req-icon">F8</div><div class="req-text">Display evaluation metrics (accuracy, F1, confusion matrix) on the interface for transparency</div></div>
+                            <div class="req-item"><div class="req-icon">N1</div><div class="req-text">We have set our target accuracy to 90%, with a minimum acceptable accuracy of 80</div></div>
                         </div>
                         <button class="req-toggle-btn" onclick="toggleReq('func-extra', this)">
                             Show all 8 <span class="arrow">▾</span>
@@ -761,7 +988,7 @@
                     </div>
                     <div class="req-col">
                         <h5>📋 Non-Functional Requirements</h5>
-                        <div class="req-item"><div class="req-icon">N1</div><div class="req-text"><strong>Accuracy:</strong> Target 90%; minimum acceptable 80% prediction accuracy</div></div>
+                        
                         <div class="req-item"><div class="req-icon">N2</div><div class="req-text"><strong>Performance:</strong> Process 100,000+ reviews within 10–15 minutes using batch processing</div></div>
                         <div class="req-item"><div class="req-icon">N3</div><div class="req-text"><strong>Scalability:</strong> Support at least 300 concurrent users</div></div>
                         <div class="req-extra" id="nonfunc-extra">
@@ -822,7 +1049,7 @@
                             <td><strong>Phase 4 — Transition</strong><br><span style="font-size:0.76rem;color:var(--muted);">1 week</span></td>
                             <td>Finalize system, document all outcomes, prepare handoff and presentation</td>
                             <td>Registered final model, polished final report, 10–12 min team presentation, individual reflections</td>
-                            <td><span class="badge-upcoming">◷ Upcoming</span></td>
+                            <td><span class="badge-done">✓ Complete</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -834,14 +1061,14 @@
 <!-- ARCHITECTURE -->
 <section id="architecture">
     <div class="container">
-        <div class="row"><div class="col-lg-15 mx-auto">
+        <div class="row"><div class="col-lg-10 mx-auto">
             <div class="section-label">Section 05</div>
             <h2>System Architecture</h2>
             <div class="section-divider"></div>
             <div class="card-box">
             <p>Five diagrams describe the system structure at different levels of detail. Together they answer: <em>who interacts with the system?</em>, <em>how does data flow through it internally?</em>, <em>what are the key entities and their relationships?</em>, <em>how do components interact during execution?</em>, and <em>what can each actor do?</em></p>
 
-                <div class="diagram-cards" style="grid-template-columns: 1fr 1fr 1fr;">
+                <div class="diagram-cards">
                     <div class="diagram-card">
                         <div class="diagram-card-header">
                             <div class="diagram-card-icon">🌐</div>
@@ -916,132 +1143,33 @@
                             <div class="diagram-card-subtitle">System entities &amp; relationships</div>
                         </div>
                     </div>
-                    <div class="diagram-card-body">
-                        <p>Shows the six core entities in the system, their attributes, and how they relate — from raw data collection through prediction and visualization delivery to end users.</p>
+                   <div class="diagram-card-body">
+                        <p>Shows the five core classes in the system and how they relate. The <strong>Review Dataset</strong> feeds three downstream classes — text reviews, ratings, and the prediction system — which in turn produces visualizations on the webpage.</p>
                         <div class="flow-diagram">
                             <div class="flow-row">
-                                <span class="flow-node">🏪 Our Appstore</span>
-                                <span class="flow-arrow">1 → 1..*</span>
-                                <span class="flow-node">📄 Raw Review Data</span>
-                            </div>
-                            <div class="flow-row">
-                                <span class="flow-node">📄 Raw Review Data</span>
+                                <span class="flow-node">📄 Text Reviews</span>
+                                <span class="flow-arrow">1 ← 1..*</span>
+                                <span class="flow-node highlight">📊 Review Dataset</span>
                                 <span class="flow-arrow">1..* → 1</span>
-                                <span class="flow-node highlight">⚙️ Prediction System</span>
+                                <span class="flow-node">⭐ Review Ratings</span>
                             </div>
                             <div class="flow-row">
-                                <span class="flow-node highlight">⚙️ Prediction System</span>
+                                <span class="flow-node highlight">📊 Review Dataset</span>
+                                <span class="flow-arrow">1..* → 1</span>
+                                <span class="flow-node highlight2">⚙️ Rating Prediction System</span>
+                            </div>
+                            <div class="flow-row">
+                                <span class="flow-node highlight2">⚙️ Rating Prediction System</span>
                                 <span class="flow-arrow">1 → 1</span>
-                                <span class="flow-node highlight2">📊 Dashboard</span>
-                            </div>
-                            <div class="flow-row">
-                                <span class="flow-node highlight2">📊 Dashboard</span>
-                                <span class="flow-arrow">1..* → 1</span>
                                 <span class="flow-node">🌐 Webpage</span>
-                            </div>
-                            <div class="flow-row">
-                                <span class="flow-node">🌐 Webpage</span>
-                                <span class="flow-arrow">1 → 1..*</span>
-                                <span class="flow-node">👤 End Users</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
 
-                    <div class="diagram-card">
-                        <div class="diagram-card-header">
-                            <div class="diagram-card-icon">🔄</div>
-                            <div>
-                                <div class="diagram-card-title">Sequence Diagram</div>
-                                <div class="diagram-card-subtitle">Pipeline execution flow &amp; interactions</div>
-                            </div>
-                        </div>
-                        <div class="diagram-card-body">
-                            <p>Traces the step-by-step interactions between system components as raw review data moves through the pipeline — from loading to final scored predictions.</p>
-                            <div class="flow-diagram">
-                                <div class="flow-row">
-                                    <span class="flow-node">👤 Users</span>
-                                    <span class="flow-arrow">loadDataset →</span>
-                                    <span class="flow-node">🔢 BinGrouping</span>
-                                </div>
-                                <div class="flow-row">
-                                    <span class="flow-node">🔢 BinGrouping</span>
-                                    <span class="flow-arrow">dataOutput →</span>
-                                    <span class="flow-node">🧹 Preprocess</span>
-                                </div>
-                                <div class="flow-row">
-                                    <span class="flow-node">🧹 Preprocess</span>
-                                    <span class="flow-arrow">cleanDataset →</span>
-                                    <span class="flow-node highlight">✂️ SplitData</span>
-                                </div>
-                                <div class="flow-row">
-                                    <span class="flow-node highlight">✂️ SplitData</span>
-                                    <span class="flow-arrow">trainSet (80%) →</span>
-                                    <span class="flow-node">📈 UpSampling</span>
-                                </div>
-                                <div class="flow-row">
-                                    <span class="flow-node">📈 UpSampling</span>
-                                    <span class="flow-arrow">upsampDataset →</span>
-                                    <span class="flow-node highlight2">🤖 Train (VW)</span>
-                                </div>
-                                <div class="flow-row">
-                                    <span class="flow-node highlight">✂️ SplitData</span>
-                                    <span class="flow-arrow">testSet (20%) →</span>
-                                    <span class="flow-node highlight2">📊 Score</span>
-                                </div>
-                                <div class="flow-row">
-                                    <span class="flow-node highlight2">📊 Score</span>
-                                    <span class="flow-arrow" style="font-style:italic;">- - returnScores → </span>
-                                    <span class="flow-node">👤 Users</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  
 
-                    <div class="diagram-card">
-                        <div class="diagram-card-header">
-                            <div class="diagram-card-icon">👥</div>
-                            <div>
-                                <div class="diagram-card-title">Use Case Diagram</div>
-                                <div class="diagram-card-subtitle">Actor interactions &amp; system capabilities</div>
-                            </div>
-                        </div>
-                        <div class="diagram-card-body">
-                            <p>Shows how each actor interacts with the system. Users submit reviews which trigger preprocessing and prediction. Stakeholders and app developers consume the output through dashboard visualizations and app rankings.</p>
-                            <div class="flow-diagram">
-                                <div class="flow-row">
-                                    <span class="flow-node">👤 User</span>
-                                    <span class="flow-arrow">→</span>
-                                    <span class="flow-node highlight">✍️ Write Review & Rate App</span>
-                                </div>
-                                <div class="flow-row">
-                                    <span style="flex:0 0 38px;"></span>
-                                    <span class="flow-arrow">→</span>
-                                    <span class="flow-node highlight">🧹 Preprocess & Clean Data</span>
-                                </div>
-                                <div class="flow-row">
-                                    <span style="flex:0 0 38px;"></span>
-                                    <span class="flow-arrow">→</span>
-                                    <span class="flow-node highlight">🤖 Predict Ratings & Score</span>
-                                </div>
-                                <div class="flow-row">
-                                    <span class="flow-node">👔 Stakeholder</span>
-                                    <span class="flow-arrow">→</span>
-                                    <span class="flow-node highlight2">📊 View Dashboard Charts</span>
-                                    <span class="flow-arrow">←</span>
-                                    <span class="flow-node">🛠️ App Developer</span>
-                                </div>
-                                <div class="flow-row">
-                                    <span class="flow-node">👔 Stakeholder</span>
-                                    <span class="flow-arrow">→</span>
-                                    <span class="flow-node highlight2">🏆 Sort & Rank Apps</span>
-                                    <span class="flow-arrow">←</span>
-                                    <span class="flow-node">🛠️ App Developer</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                
@@ -1212,51 +1340,85 @@
 
                     <p>Starting from the baseline Linear Regression pipeline, we made three major architectural changes: binning continuous ratings into three classes (Low ≤ 0.5, Mid = 0.6, High ≥ 0.8), replacing Linear Regression with <strong>Vowpal Wabbit</strong> for native text classification, and adding Python scripts to handle input formatting and classification output. The built-in <em>Preprocess Text</em> module was removed since Vowpal Wabbit handles text processing internally.</p>
 
-                    <h5 style="font-weight:700; margin:24px 0 14px; font-size:0.87rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--blue);">Experiment Progression</h5>
+                    <h5 style="font-weight:700; margin:24px 0 14px; font-size:0.87rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--blue);">Experiment Progression (29 Runs)</h5>
 
-                    <div class="pipeline-step">
-                        <div class="pipeline-num">1</div>
-                        <div class="pipeline-content">
-                            <h6>Initial Vowpal Wabbit Model</h6>
-                            <p>First successful run with basic VW settings achieved <strong>83.6% accuracy</strong>. However, the Mid class performed exceptionally poorly — the model was heavily biased toward predicting High.</p>
+                    <!-- 4-phase summary cards -->
+                    <div class="exp-phases">
+                        <div class="exp-phase-card">
+                            <div class="exp-phase-header" style="background:linear-gradient(135deg,#1e3a5f,#1a56c4);">
+                                <div class="exp-phase-num">Runs 1–10</div>
+                                <div class="exp-phase-title">🔧 Pipeline Setup</div>
+                            </div>
+                            <div class="exp-phase-body">
+                                <div class="exp-phase-acc fail-acc">—</div>
+                                <p>Replaced Linear Regression with Vowpal Wabbit and resolved a series of pipeline failures — incorrect input formatting, cache configuration, column naming, and evaluation component mismatches. Required a custom Python script to handle classification output.</p>
+                                <span class="exp-phase-tag fail-tag">10 iterations to first success</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="pipeline-step">
-                        <div class="pipeline-num">2</div>
-                        <div class="pipeline-content">
-                            <h6>Hyperparameter Tuning (~8 variants)</h6>
-                            <p>Tested variations in learning rate, number of passes, and n-gram settings. None outperformed the initial basic model — simpler inputs consistently matched or beat more complex configurations.</p>
+                        <div class="exp-phase-card">
+                            <div class="exp-phase-header" style="background:linear-gradient(135deg,#0e4f63,#0e7490);">
+                                <div class="exp-phase-num">Runs 11–16</div>
+                                <div class="exp-phase-title">⚙️ Hyperparameter Tuning</div>
+                            </div>
+                            <div class="exp-phase-body">
+                                <div class="exp-phase-acc ok-acc">81.9–83.6%</div>
+                                <p>Tested variations in n-grams, learning rate, passes, and loss functions. The simplest model (bigrams only) matched or beat all complex variants. Learning rate consistently hurt performance — abandoned going forward.</p>
+                                <span class="exp-phase-tag ok-tag">Best: 83.6% (basic config)</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="pipeline-step">
-                        <div class="pipeline-num">3</div>
-                        <div class="pipeline-content">
-                            <h6>Downsampling the High Class</h6>
-                            <p>Attempted to fix class imbalance by undersampling High-rated reviews. Accuracy dropped to a maximum of <strong>77.7%</strong>, and Low/Mid classes still performed poorly — undersampling alone was insufficient.</p>
+                        <div class="exp-phase-card">
+                            <div class="exp-phase-header" style="background:linear-gradient(135deg,#7c1d1d,#b91c1c);">
+                                <div class="exp-phase-num">Runs 17–24</div>
+                                <div class="exp-phase-title">📉 Downsampling Only</div>
+                            </div>
+                            <div class="exp-phase-body">
+                                <div class="exp-phase-acc bad-acc">73.5–78.0%</div>
+                                <p>Undersampled the High class to address class imbalance. Accuracy dropped significantly — the Low and Mid classes still performed poorly. Undersampling alone was insufficient since Low and Mid remained underrepresented.</p>
+                                <span class="exp-phase-tag bad-tag">Worst run: 73.5% (Run 23)</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="pipeline-step">
-                        <div class="pipeline-num">4</div>
-                        <div class="pipeline-content">
-                            <h6>Combined Resampling (Final Approach)</h6>
-                            <p>Downsampled High class <em>and</em> upsampled Low and Mid classes to balance the training data. The first model with this strategy reached <strong>88.8% accuracy</strong>. Several subsequent variants with different VW settings returned the same result — confirming stability. We selected the simplest model at this accuracy as our final pipeline.</p>
-                        </div>
-                    </div>
-                    <div class="pipeline-step" style="border-bottom:none;">
-                        <div class="pipeline-num">5</div>
-                        <div class="pipeline-content">
-                            <h6>Output to Blob Storage</h6>
-                            <p>Added a Python script to export final predictions to Azure Blob Storage, enabling the Power BI dashboard to pull data directly from the pipeline output.</p>
+                        <div class="exp-phase-card exp-phase-best">
+                            <div class="exp-phase-header" style="background:linear-gradient(135deg,#14532d,#16a34a);">
+                                <div class="exp-phase-num">Runs 25–29</div>
+                                <div class="exp-phase-title">🏆 Combined Resampling</div>
+                            </div>
+                            <div class="exp-phase-body">
+                                <div class="exp-phase-acc best-acc">88.8% 🏆</div>
+                                <p>Downsampled High <em>and</em> upsampled Low &amp; Mid classes simultaneously. Three variants all returned 88.8% — confirming stability. Selected the simplest configuration (Run 25) as the final model.</p>
+                                <span class="exp-phase-tag best-tag">Final model: Run 25 · 88.8%</span>
+                            </div>
                         </div>
                     </div>
 
-                    <p style="font-size:0.84rem; color:var(--muted); margin-top:16px;">📋 Full experiment logs with per-model settings and metrics are available in the <strong>/experiments/</strong> folder on GitHub.</p>
+                    <!-- LIMITATIONS BOX -->
+                    <div class="limitations-box" style="margin-top:28px;">
+                        <div class="lim-header">⚠️ Known System Limitations & Future Work</div>
+                        <div class="lim-grid">
+                            <div class="lim-item">
+                                <div class="lim-icon">📊</div>
+                                <div><strong>Class Imbalance</strong><br><span>Despite upsampling the Low and Mid classes, the Mid class remained the hardest to classify at 82.6% vs High at 92.7%. Future work could explore additional resampling techniques such as SMOTE to further improve Mid class performance.</span></div>
+                            </div>
+                            <div class="lim-item">
+                                <div class="lim-icon">😏</div>
+                                <div><strong>Sarcasm &amp; Irony</strong><br><span>Reviews using sarcasm or indirect wording may still be misclassified. Future work could incorporate more advanced language models such as BERT, which have a better understanding of context and tone and may improve sarcasm detection.</span></div>
+                            </div>
+                            <div class="lim-item">
+                                <div class="lim-icon">📈</div>
+                                <div><strong>Power BI Licensing</strong><br><span>The dashboard could not be embedded directly into the webpage due to student publishing restrictions. This could be resolved by requesting publishing access from the university IT administrator.</span></div>
+                            </div>
+                            <div class="lim-item">
+                                <div class="lim-icon">🤖</div>
+                                <div><strong>Single Model Type</strong><br><span>All experiments used Vowpal Wabbit within Azure ML. Future work could test different model types and connect the pipeline through a dedicated application, allowing users to upload their own datasets and receive predictions directly.</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p style="font-size:0.84rem; color:var(--muted); margin-top:16px;">📋 Full experiment logs with per-run settings and metrics are available in the <strong>/experiments/</strong> folder on GitHub.</p>
                 </div>
             </div>
         </div></div>
     </div>
 </section>
-
 
 <!-- METRICS -->
 <section id="metrics">
@@ -1265,32 +1427,116 @@
             <div class="section-label">Section 09</div>
             <h2>Evaluation Metrics</h2>
             <div class="section-divider"></div>
-            <div class="card-box">
+            <div class="card-box fade-in-up">
                 <p>Due to class imbalance in the dataset, model performance is evaluated using both overall accuracy and class-level metrics. The model achieved an accuracy of <strong>88.8%</strong> on over <strong>34.5K reviews</strong>, indicating strong performance.</p>
 
-                <p>The model performs best on <strong>High (4–5 stars)</strong> reviews, followed by <strong>Low (1–2 stars)</strong>, while <strong>Mid (3 stars)</strong> reviews are more difficult to classify. A <strong>confusion matrix</strong> is used to analyze prediction errors, which mostly occur between similar rating categories. The dashboard also highlights rating distribution and identifies <strong>low-rated apps</strong>, helping stakeholders understand user feedback and areas for improvement.</p>
+                <!-- ANIMATED COUNTERS -->
+                <div class="counter-grid" id="counter-grid">
+                    <div class="counter-box">
+                        <div class="counter-val" data-target="88.8" data-suffix="%">0%</div>
+                        <div class="counter-label">Overall Accuracy</div>
+                    </div>
+                    <div class="counter-box">
+                        <div class="counter-val" data-target="34500" data-suffix="K" data-divide="1000">0K</div>
+                        <div class="counter-label">Reviews Tested</div>
+                    </div>
+                    <div class="counter-box">
+                        <div class="counter-val" data-target="3" data-suffix=" Classes">0</div>
+                        <div class="counter-label">Rating Categories</div>
+                    </div>
+                    <div class="counter-box">
+                        <div class="counter-val" data-target="10" data-suffix="+">0</div>
+                        <div class="counter-label">Experiments Run</div>
+                    </div>
+                </div>
 
-            <div style="margin-top:24px;">
-                <a href="https://app.powerbi.com/groups/me/reports/b1390924-d514-42c3-8a20-f045f1732dbc/619b1cad838019b88d45" 
-                target="_blank"
-                style="display:inline-flex;align-items:center;gap:10px;
-                        background:var(--navy);color:#fff;
-                        padding:12px 24px;border-radius:10px;
-                        font-weight:600;font-size:0.95rem;
-                        text-decoration:none;
-                        border:2px solid var(--accent);
-                        transition:background 0.2s;">
-                    📊 View Live Power BI Dashboard
-                </a>
-            <p style="font-size:0.78rem;color:var(--muted);margin-top:10px;">
-            Opens in Power BI — live data from Azure ML pipeline · Last updated 4/25/2026
-        </p>
-        </div>
+                <!-- CLASS PERFORMANCE BARS -->
+                <h5 style="font-weight:700; margin:28px 0 14px; font-size:0.87rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--blue);">Accuracy by Rating Class</h5>
+                <p style="font-size:0.87rem; color:var(--muted); margin-bottom:16px;">The model performs best on <strong>High</strong> reviews due to their prevalence in training data, while <strong>Mid</strong> reviews are hardest to classify — errors mostly occur between adjacent rating categories.</p>
+                <div class="perf-bars" id="perf-bars">
+                    <div class="perf-bar-item">
+                        <div class="perf-bar-label">⭐ High (4–5★)</div>
+                        <div class="perf-bar-track"><div class="perf-bar-fill high" data-width="92.7"></div></div>
+                        <div class="perf-bar-pct">92.7%</div>
+                    </div>
+                    <div class="perf-bar-item">
+                        <div class="perf-bar-label">👎 Low (1–2★)</div>
+                        <div class="perf-bar-track"><div class="perf-bar-fill low" data-width="87.1"></div></div>
+                        <div class="perf-bar-pct">87.1%</div>
+                    </div>
+                    <div class="perf-bar-item">
+                        <div class="perf-bar-label">😐 Mid (3★)</div>
+                        <div class="perf-bar-track"><div class="perf-bar-fill mid" data-width="82.6"></div></div>
+                        <div class="perf-bar-pct">82.6%</div>
+                    </div>
+                </div>
+
+                <div style="margin-top:28px;">
+                    <a href="https://app.powerbi.com/groups/me/reports/b1390924-d514-42c3-8a20-f045f1732dbc/619b1cad838019b88d45"
+                    target="_blank"
+                    style="display:inline-flex;align-items:center;gap:10px;
+                            background:var(--navy);color:#fff;
+                            padding:12px 24px;border-radius:10px;
+                            font-weight:600;font-size:0.95rem;
+                            text-decoration:none;
+                            border:2px solid var(--accent);
+                            transition:background 0.2s;">
+                        📊 View Live Power BI Dashboard
+                    </a>
+                    <p style="font-size:0.78rem;color:var(--muted);margin-top:10px;">
+                        Opens in Power BI — live data from Azure ML pipeline · Last updated 4/25/2026
+                    </p>
+                </div>
             </div>
         </div></div>
     </div>
 </section>
 
+<!-- TEAM -->
+<section id="team" class="bg-alt">
+    <div class="container">
+        <div class="row"><div class="col-lg-10 mx-auto">
+            <div class="section-label">Section 10</div>
+            <h2>Meet the Team</h2>
+            <div class="section-divider"></div>
+            <div class="card-box fade-in-up">
+                <p>We are a team of four data science students at UNCW enrolled in DSC592 — Software Engineering for Data Science. Together we ran a full OpenUP engineering lifecycle on a real ML system, from stakeholder interviews through model deployment.</p>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-avatar c1" style="background:none; overflow:hidden;">
+                            <img src="content/Salem.png" alt="Salem Burtner" style="width:100%; height:100%; object-fit:cover; object-position:center top; border-radius:50%;">
+                        </div>
+                        <div class="team-name">Salem Burtner</div>
+                        <div class="team-role">Data Science Student</div>
+                        <div class="team-contrib">Pipeline & Modeling</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar c2" style="background:none; overflow:hidden;">
+                            <img src="content/Roya.jpg" alt="Roya Rahimi" style="width:100%; height:100%; object-fit:cover; object-position:center top; border-radius:50%;">
+                        </div>
+                        <div class="team-name">Roya Rahimi</div>
+                        <div class="team-role">Data Science Student</div>
+                        <div class="team-contrib">Web & Dashboard</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar c3" style="background:none; overflow:hidden;">
+                            <img src="content/Connor.png" alt="Connor McClanahan" style="width:100%; height:100%; object-fit:cover; object-position:center top; border-radius:50%;">
+                        </div>
+                        <div class="team-name">Connor McClanahan</div>
+                        <div class="team-role">Data Science Student</div>
+                        <div class="team-contrib">Architecture & Docs</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar c4" style="font-size:1.3rem;">👨‍🏫</div>
+                        <div class="team-name">Dr. Ahmed Elsaid</div>
+                        <div class="team-role">Course Instructor · UNCW</div>
+                        <div class="team-contrib">Project Supervisor</div>
+                    </div>
+                </div>
+            </div>
+        </div></div>
+    </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
@@ -1299,12 +1545,12 @@
             <div>
                 <strong>App Review Rating Prediction System</strong><br>
                 DSC592 · Software Engineering for Data Science · UNCW <br>
-                <a href="mailto:project.groupc@uncw.us" style="color:rgba(255,255,255,0.6); text-decoration:none;">project.groupc@uncw.us</a>
+                <a href="mailto:project.groupc@uncw.edu" style="color:rgba(255,255,255,0.6); text-decoration:none;">project.groupc@uncw.edu</a>
                 · 
                 <a href="tel:+19105551234" style="color:rgba(255,255,255,0.6); text-decoration:none;">(910) 555-1234</a>
             </div>
             <div class="footer-links">
-                <a href="https://github.com/" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://github.com/UNCW-DSC592-Spring2026/Group-C-Repo" title="GitHub"><i class="fab fa-github"></i></a>
                 <a href="https://ca.linkedin.com/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 <a href="https://www.instagram.com/" title="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.facebook.com/" title="Facebook"><i class="fab fa-facebook"></i></a>
@@ -1322,6 +1568,7 @@
 <script src="js/scrolling-nav.js"></script>
 
 <script>
+    /* ── TOGGLE HELPERS ── */
     function toggleReq(id, btn) {
         var el = document.getElementById(id);
         var isOpen = el.classList.toggle('open');
@@ -1346,101 +1593,78 @@
             : '📄 View Full Risk Register with Mitigation Strategies (PDF)';
         btn.innerHTML = (isOpen ? '📄 Hide PDF ' : label) + ' <span class="pdf-arrow" style="' + (isOpen ? 'transform:rotate(180deg);' : '') + 'transition:transform 0.25s;font-size:0.75rem;">▾</span>';
     }
-    // --- CSV Upload ---
-let selectedFile = null;
 
-function handleDragOver(e) {
-    e.preventDefault();
-    var area = document.getElementById('upload-area');
-    area.style.borderColor = 'var(--blue)';
-    area.style.background  = '#edf1f8';
-}
+    /* ── READING PROGRESS BAR ── */
+    var progressBar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', function () {
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        progressBar.style.width = pct + '%';
 
-function handleDragLeave(e) {
-    var area = document.getElementById('upload-area');
-    area.style.borderColor = 'var(--border)';
-    area.style.background  = 'var(--light)';
-}
+        /* BACK TO TOP visibility */
+        var btn = document.getElementById('back-to-top');
+        if (scrollTop > 400) btn.classList.add('visible');
+        else btn.classList.remove('visible');
+    });
 
-function handleDrop(e) {
-    e.preventDefault();
-    handleDragLeave(e);
-    var file = e.dataTransfer.files[0];
-    if (file && file.name.endsWith('.csv')) setFile(file);
-    else showStatus('error', '⚠️ Please upload a .csv file only.');
-}
-
-function handleFileSelect(e) {
-    var file = e.target.files[0];
-    if (file) setFile(file);
-}
-
-function setFile(file) {
-    selectedFile = file;
-    document.getElementById('file-name').textContent = file.name;
-    document.getElementById('file-size').textContent = (file.size / 1024).toFixed(1) + ' KB';
-    document.getElementById('file-info').style.display = 'block';
-    var btn = document.getElementById('submit-btn');
-    btn.disabled = false;
-    btn.style.opacity = '1';
-    document.getElementById('status-msg').style.display = 'none';
-}
-
-function clearFile() {
-    selectedFile = null;
-    document.getElementById('file-info').style.display = 'none';
-    document.getElementById('csv-input').value = '';
-    var btn = document.getElementById('submit-btn');
-    btn.disabled = true;
-    btn.style.opacity = '0.5';
-}
-
-function showStatus(type, message) {
-    var el = document.getElementById('status-msg');
-    var styles = {
-        success: 'background:#dcfce7; border:1px solid #86efac; color:#166534;',
-        error:   'background:#fef2f2; border:1px solid #fecaca; color:#991b1b;',
-        loading: 'background:var(--indigo-bg); border:1px solid #c7d5f5; color:var(--indigo);'
-    };
-    el.style.cssText = 'display:block; padding:14px 18px; border-radius:10px; font-size:0.88rem; font-weight:500;' + styles[type];
-    el.textContent = message;
-}
-
-function submitFile() {
-    if (!selectedFile) return;
-
-    var btn = document.getElementById('submit-btn');
-    btn.disabled = true;
-    btn.style.opacity = '0.5';
-    btn.textContent   = '⏳ Submitting...';
-
-    showStatus('loading', '⏳ Uploading file and triggering pipeline — this may take a moment...');
-
-    var formData = new FormData();
-    formData.append('file', selectedFile);
-
-    // Replace with your Azure Function URL once permissions are granted
-    var FUNCTION_URL = 'YOUR_AZURE_FUNCTION_URL';
-
-    fetch(FUNCTION_URL, { method: 'POST', body: formData })
-        .then(function(res) { return res.json(); })
-        .then(function(data) {
-            if (data.error) {
-                showStatus('error', '❌ Error: ' + data.error);
-            } else {
-                showStatus('success', '✅ Pipeline triggered successfully! Check the Power BI dashboard in 5–10 minutes for updated results. Job ID: ' + data.job_id);
+    /* ── SCROLL FADE-IN ── */
+    var fadeEls = document.querySelectorAll('.fade-in-up');
+    var fadeObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                fadeObserver.unobserve(entry.target);
             }
-            btn.disabled     = false;
-            btn.style.opacity = '1';
-            btn.textContent  = '🚀 Run Pipeline';
-        })
-        .catch(function(err) {
-            showStatus('error', '❌ Could not connect to pipeline. Please try again or contact the team.');
-            btn.disabled     = false;
-            btn.style.opacity = '1';
-            btn.textContent  = '🚀 Run Pipeline';
         });
-}
+    }, { threshold: 0.12 });
+    fadeEls.forEach(function(el) { fadeObserver.observe(el); });
+
+    /* ── ANIMATED COUNTERS ── */
+    var countersStarted = false;
+    var counterObserver = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting && !countersStarted) {
+            countersStarted = true;
+            document.querySelectorAll('.counter-val[data-target]').forEach(function(el) {
+                var target = parseFloat(el.getAttribute('data-target'));
+                var suffix = el.getAttribute('data-suffix') || '';
+                var divide = parseFloat(el.getAttribute('data-divide')) || 1;
+                var duration = 1600;
+                var start = null;
+                function step(ts) {
+                    if (!start) start = ts;
+                    var progress = Math.min((ts - start) / duration, 1);
+                    var ease = 1 - Math.pow(1 - progress, 3);
+                    var val = target * ease / divide;
+                    // format nicely
+                    var display = divide > 1
+                        ? (val).toFixed(1)
+                        : (Number.isInteger(target) ? Math.round(val) : val.toFixed(1));
+                    el.textContent = display + suffix;
+                    if (progress < 1) requestAnimationFrame(step);
+                    else el.textContent = (target / divide % 1 === 0 ? target / divide : (target/divide).toFixed(1)) + suffix;
+                }
+                requestAnimationFrame(step);
+            });
+        }
+    }, { threshold: 0.3 });
+    var cg = document.getElementById('counter-grid');
+    if (cg) counterObserver.observe(cg);
+
+    /* ── PERFORMANCE BARS ── */
+    var barsStarted = false;
+    var barObserver = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting && !barsStarted) {
+            barsStarted = true;
+            document.querySelectorAll('.perf-bar-fill[data-width]').forEach(function(el) {
+                setTimeout(function() {
+                    el.style.width = el.getAttribute('data-width') + '%';
+                }, 200);
+            });
+        }
+    }, { threshold: 0.3 });
+    var pb = document.getElementById('perf-bars');
+    if (pb) barObserver.observe(pb);
 </script>
 </body>
 </html>
